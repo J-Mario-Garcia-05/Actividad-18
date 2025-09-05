@@ -15,7 +15,13 @@ class BandaEscolar(Participante):
         self.nombre = nombre
         self.institucion = institucion
         self.__categoria = categoria
-        self.__puntaje = {}
+        self.__puntaje = {
+            "ritmo": 0,
+            "uniformidad": 0,
+            "coreografia": 0,
+            "alineacion": 0,
+            "puntualidad": 0
+        }
 
     @property
     def categoria(self):
@@ -26,6 +32,16 @@ class BandaEscolar(Participante):
             self.__categoria = value
         else:
             raise ValueError("Categoria no disponible")
+
+    @property
+    def puntaje(self):
+        return self.__puntaje
+    @puntaje.setter
+    def puntaje(self, value):
+        if 0 <= value <= 10:
+            self.__puntaje = value
+        else:
+            raise ValueError("Puntaje fuera de rango")
 
 class ConcursoBandasApp:
     def __init__(self):
